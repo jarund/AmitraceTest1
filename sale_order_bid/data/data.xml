@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+        <record model="ir.actions.server" id="action_sales_order_bid_amount">
+            <field name="name">Update Bid Amount</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order" />
+            <field name="state">code</field>
+            <field name="binding_view_types">form</field>
+            <field name="code">
+if records:
+    for r in records:
+        for line in r.order_line:
+            line.write({
+                'bid_amount': line.price_subtotal
+            })
+            </field>
+        </record>
+</odoo>
